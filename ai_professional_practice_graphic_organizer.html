@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETFO POTR: Critical AI Integration Graphic Organizer</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom print styling to ensure beautiful, physical, structured handouts */
+        @media print {
+            body {
+                background: white !important;
+                color: black !important;
+                font-size: 11pt !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .print-card {
+                border: 1px solid #d1d5db !important;
+                box-shadow: none !important;
+                page-break-inside: avoid;
+                background-color: white !important;
+            }
+            .print-grid {
+                display: grid !important;
+                grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+                gap: 1rem !important;
+            }
+            .print-full {
+                grid-column: span 2 / span 2 !important;
+            }
+            textarea {
+                border: 1px solid #9ca3af !important;
+                background: transparent !important;
+                resize: none !important;
+                height: auto !important;
+                min-height: 120px !important;
+            }
+            input[type="text"] {
+                border-bottom: 1px solid #9ca3af !important;
+                border-top: none !important;
+                border-left: none !important;
+                border-right: none !important;
+            }
+            .print-header {
+                border-bottom: 2px solid #1e3a8a !important;
+                padding-bottom: 1rem !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased">
+
+    <!-- Top Navigation / Header (Now Dark Navy) -->
+    <header class="bg-blue-950 text-white shadow-md no-print">
+        <div class="max-w-7xl mx-auto px-4 py-4 sm:px-6 lg:px-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <!-- SVG Logo/Icon (Now Blue-tinted) -->
+                <svg class="h-8 w-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+                <div>
+                    <h1 class="text-lg font-bold tracking-tight">ETFO Presenters on the Road</h1>
+                    <p class="text-xs text-blue-200">Sandy Yabko Prizant • Digital Literacy Consultant Portfolio</p>
+                </div>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+                <button onclick="window.print()" class="bg-blue-700 hover:bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center shadow transition duration-150 ease-in-out">
+                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-3a2 2 0 00-2-2H9a2 2 0 00-2 2v3a2 2 0 002 2zm5-17V7a4 4 0 00-8 0v4h8z"/></svg>
+                    Print Handout / Export to PDF
+                </button>
+                <button onclick="resetForm()" class="bg-slate-700 hover:bg-slate-600 text-white px-3 py-2 rounded-lg text-sm font-medium transition duration-150 ease-in-out">
+                    Clear Form
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-6 sm:px-6 lg:px-8">
+        
+        <!-- Interactive Banner for Workshop / Board Context (No Print adapts gracefully) -->
+        <div class="bg-white rounded-xl shadow-sm p-6 mb-6 border border-slate-200 print-header">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <span class="text-blue-800 font-bold text-xs uppercase tracking-widest bg-blue-50 px-2.5 py-1 rounded-full">Interactive Reflection Workspace</span>
+                    <h2 class="text-2xl font-extrabold text-slate-900 mt-2">Critical AI Integration & Reflection Organizer</h2>
+                    <p class="text-slate-600 mt-1 text-sm">
+                        Use this graphic organizer to plan how you will safely, critically, and ethically incorporate AI into your professional practices and classroom instruction over the next few months.
+                    </p>
+                </div>
+                <!-- Input for Educator Info -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 min-w-[280px]">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-500 uppercase">Educator Name</label>
+                        <input type="text" id="educatorName" placeholder="Enter name" class="mt-1 block w-full px-3 py-1.5 border border-slate-300 rounded-md text-sm shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-500 uppercase">Grade / Division</label>
+                        <input type="text" id="educatorDivision" placeholder="e.g. Grade 4 / Junior" class="mt-1 block w-full px-3 py-1.5 border border-slate-300 rounded-md text-sm shadow-sm focus:ring-blue-500 focus:border-blue-500">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Interactive Fast-Fills (No-Print) -->
+        <div class="bg-slate-100 rounded-xl p-4 mb-6 border border-slate-200 no-print">
+            <h3 class="text-xs font-bold uppercase text-slate-600 tracking-wider mb-3 flex items-center">
+                <svg class="w-4 h-4 mr-1.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+                Professional Prompt Seeds & Focus Builders (Click to add to your plan)
+            </h3>
+            <div class="flex flex-wrap gap-2">
+                <button onclick="appendToField('guardrails', '• I commit to never uploading student assessment marks, student written samples, or IEP goals to any non-board approved generative AI systems.\n')" class="bg-white hover:bg-blue-50 text-xs text-slate-700 border border-slate-300 rounded-full px-3 py-1.5 transition">🛡️ Privacy Guardrail</button>
+                <button onclick="appendToField('practice', '• Focus on Universal Design for Learning (UDL): Co-generating multiple reading levels for my science/social studies units to ensure full accessibility for all learners.\n')" class="bg-white hover:bg-blue-50 text-xs text-slate-700 border border-slate-300 rounded-full px-3 py-1.5 transition">📚 UDL Adaptation</button>
+                <button onclick="appendToField('students', '• Plan a Media Literacy lesson where students compare and analyze bias in AI-generated image outputs of historical events.\n')" class="bg-white hover:bg-blue-50 text-xs text-slate-700 border border-slate-300 rounded-full px-3 py-1.5 transition">🕵️ Bias Detective Lesson</button>
+                <button onclick="appendToField('planning30', '• Explore board-approved tools with grade level partners to co-plan an inquiry framework.\n')" class="bg-white hover:bg-blue-50 text-xs text-slate-700 border border-slate-300 rounded-full px-3 py-1.5 transition">📅 30-Day Plan Focus</button>
+            </div>
+        </div>
+
+        <!-- The Organizer Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 print-grid">
+            
+            <!-- Quadrant 1: Professional Judgement & Safety Guardrails -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between print-card">
+                <div>
+                    <div class="flex items-center space-x-3 border-b border-slate-100 pb-3 mb-4">
+                        <div class="p-2 bg-rose-50 text-rose-700 rounded-lg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900">1. My Safety & Integrity Guardrails</h3>
+                            <p class="text-xs text-slate-500">Protecting Student Privacy and maintaining Professional Judgement (C2.5).</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 italic mb-2 no-print">How will you protect sensitive student data? When will you choose to step back and rely exclusively on your own human observational data?</p>
+                    <textarea id="guardrails" placeholder="Write down your boundaries and guidelines here (e.g., 'I will use AI solely as a starting point for resource planning and never input student text or evaluation data...')" class="w-full min-h-[140px] px-3 py-2 border border-slate-200 rounded-lg text-sm bg-slate-50 focus:bg-white focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition"></textarea>
+                </div>
+            </div>
+
+            <!-- Quadrant 2: My Professional Practice & Teacher Workflow -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between print-card">
+                <div>
+                    <div class="flex items-center space-x-3 border-b border-slate-100 pb-3 mb-4">
+                        <div class="p-2 bg-indigo-50 text-indigo-700 rounded-lg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900">2. Enhancing Professional Practice</h3>
+                            <p class="text-xs text-slate-500">Drafting resources, differentiating texts, and designing curriculum.</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 italic mb-2 no-print">How will you safely leverage AI to generate differentiated tasks, modify text complexities, or brainstorm initial active inquiry lesson starts?</p>
+                    <textarea id="practice" placeholder="Write ideas for your workflow (e.g., 'Using prompt templates to draft decodable passages for various phonics stages, then adapting manually to represent my diverse classroom...')" class="w-full min-h-[140px] px-3 py-2 border border-slate-200 rounded-lg text-sm bg-slate-50 focus:bg-white focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition"></textarea>
+                </div>
+            </div>
+
+            <!-- Quadrant 3: Student Digital & AI Literacy (Classroom Actions) -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between print-card">
+                <div>
+                    <div class="flex items-center space-x-3 border-b border-slate-100 pb-3 mb-4">
+                        <div class="p-2 bg-blue-50 text-blue-700 rounded-lg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                        </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900">3. Cultivating Critical Student AI Literacy</h3>
+                            <p class="text-xs text-slate-500">Helping students question, evaluate, and critically review AI outputs.</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 italic mb-2 no-print">What specific activities or conversations will you host to teach students about algorithm bias, fact-checking, and the ethical use of digital tools?</p>
+                    <textarea id="students" placeholder="E.g., 'Have students co-prompt image generators, analyze gender and ethnic bias in outputs, and discuss why these imbalances occur based on training data...'" class="w-full min-h-[140px] px-3 py-2 border border-slate-200 rounded-lg text-sm bg-slate-50 focus:bg-white focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition"></textarea>
+                </div>
+            </div>
+
+            <!-- Quadrant 4: Equity, Inclusion & Bias Analysis Checklist -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-5 flex flex-col justify-between print-card">
+                <div>
+                    <div class="flex items-center space-x-3 border-b border-slate-100 pb-3 mb-4">
+                        <div class="p-2 bg-amber-50 text-amber-700 rounded-lg">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-slate-900">4. My Commitment to Equity & CRRP</h3>
+                            <p class="text-xs text-slate-500">Anti-oppression focus and actively mitigating AI bias.</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-400 italic mb-2 no-print">How will you double-check outputs to ensure they do not perpetuate harm? How will you accommodate the digital divide?</p>
+                    <textarea id="equity" placeholder="E.g., 'I will evaluate all AI-generated texts for Eurocentric assumptions and intentionally modify stories to feature local communities and diverse identities...'" class="w-full min-h-[140px] px-3 py-2 border border-slate-200 rounded-lg text-sm bg-slate-50 focus:bg-white focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition"></textarea>
+                </div>
+            </div>
+
+            <!-- Roadmap Section: 30 - 60 - 90 Days (Full width) -->
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:col-span-2 print-full print-card">
+                <div class="flex items-center space-x-3 border-b border-slate-100 pb-3 mb-4">
+                    <div class="p-2 bg-blue-50 text-blue-700 rounded-lg">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-slate-900">5. Continuous Implementation Roadmap (30 - 60 - 90 Days)</h3>
+                        <p class="text-xs text-slate-500">Realistic actions for individual practice and instructional impact.</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 print-grid">
+                    <!-- 30 Days -->
+                    <div class="bg-blue-50/50 p-4 rounded-lg border border-blue-100 print-card">
+                        <span class="text-blue-900 font-bold text-xs uppercase tracking-wider block mb-2">📅 Phase 1 (Within 30 Days)</span>
+                        <textarea id="planning30" placeholder="Focus: Learning and exploration. e.g. Exploring board policies, identifying approved AI safe spaces..." class="w-full min-h-[110px] px-3 py-2 border border-slate-200 rounded-lg text-sm bg-white focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition"></textarea>
+                    </div>
+                    <!-- 60 Days -->
+                    <div class="bg-blue-50/50 p-4 rounded-lg border border-blue-100 print-card">
+                        <span class="text-blue-900 font-bold text-xs uppercase tracking-wider block mb-2">🚀 Phase 2 (Within 60 Days)</span>
+                        <textarea id="planning60" placeholder="Focus: Classroom application. e.g. Executing my first collaborative lesson with students regarding AI truthfulness..." class="w-full min-h-[110px] px-3 py-2 border border-slate-200 rounded-lg text-sm bg-white focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition"></textarea>
+                    </div>
+                    <!-- 90 Days -->
+                    <div class="bg-blue-50/50 p-4 rounded-lg border border-blue-100 print-card">
+                        <span class="text-blue-900 font-bold text-xs uppercase tracking-wider block mb-2">⭐ Phase 3 (Within 90 Days)</span>
+                        <textarea id="planning90" placeholder="Focus: Sharing and Community. e.g. Offering a brief division sharing session with peers to map outcomes..." class="w-full min-h-[110px] px-3 py-2 border border-slate-200 rounded-lg text-sm bg-white focus:ring-blue-500 focus:border-blue-500 focus:outline-none transition"></textarea>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer with Sandy's Credentials -->
+    <footer class="bg-slate-900 text-slate-400 py-6 mt-12 border-t border-slate-800 text-center text-xs no-print">
+        <p class="mb-1">Proposed Portfolio Design Asset - ETFO Presenters on the Road Selection Cycle (2026)</p>
+        <p>Curated and coded by Sandy Yabko Prizant, Digital Literacy Consultant</p>
+    </footer>
+
+    <!-- Form State Persistence and Functions -->
+    <script>
+        // Load data from local storage on load
+        window.addEventListener('DOMContentLoaded', () => {
+            const fields = ['educatorName', 'educatorDivision', 'guardrails', 'practice', 'students', 'equity', 'planning30', 'planning60', 'planning90'];
+            fields.forEach(field => {
+                const value = localStorage.getItem('etfo_ai_' + field);
+                if (value) {
+                    document.getElementById(field).value = value;
+                }
+                
+                // Add event listener to save as user types
+                document.getElementById(field).addEventListener('input', (e) => {
+                    localStorage.setItem('etfo_ai_' + field, e.target.value);
+                });
+            });
+        });
+
+        // Fast fill appender function
+        function appendToField(fieldId, text) {
+            const el = document.getElementById(fieldId);
+            const currentValue = el.value;
+            // Add newline if existing text exists
+            el.value = currentValue ? (currentValue.endsWith('\n') ? currentValue + text : currentValue + '\n' + text) : text;
+            // Dispatch input event to trigger local storage save
+            el.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        // Reset all fields
+        function resetForm() {
+            if (confirm("Are you sure you want to clear your current progress? All typed text will be removed.")) {
+                const fields = ['educatorName', 'educatorDivision', 'guardrails', 'practice', 'students', 'equity', 'planning30', 'planning60', 'planning90'];
+                fields.forEach(field => {
+                    document.getElementById(field).value = '';
+                    localStorage.removeItem('etfo_ai_' + field);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
